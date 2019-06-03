@@ -28,22 +28,22 @@
                               <div class="layui-input-inline title-input">
 									
 									 
-									  <input type="text" name="cnnveid" placeholder="源IP" autocomplete="off" class="layui-input">
+									  <input type="text" name="fromIp" placeholder="源IP" autocomplete="off" class="layui-input">
 								</div>     
 								<div class="layui-input-inline title-input">
 									
 									 
-									 <input type="text" name="cveid" placeholder="目的IP" autocomplete="off" class="layui-input">								
+									 <input type="text" name="intranetIp" placeholder="目的IP" autocomplete="off" class="layui-input">
 								</div> 
 								<div class="layui-input-inline title-input">
 									
 									 
-									 <input type="text" name="yuanport" placeholder="目的端口" autocomplete="off" class="layui-input">
+									 <input type="text" name="intranetPort" placeholder="目的端口" autocomplete="off" class="layui-input">
 								</div>   								
  								<div class="layui-input-inline title-input">
 									
 									 
-									 <input type="text" name="username" placeholder="用户名" autocomplete="off" class="layui-input">
+									 <input type="text" name="userName" placeholder="用户名" autocomplete="off" class="layui-input">
 								</div>   		
                             </div>
                         </div>

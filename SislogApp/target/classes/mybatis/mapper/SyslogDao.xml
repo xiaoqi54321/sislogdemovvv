@@ -7,10 +7,25 @@
     </select>
 
     <select id="list" parameterType="map" resultType="java.util.Map">
-        select * from  syslog limit #{startIndex},#{limit}
+        select * from  syslog
+        <where>
+            1=1
+            <if test="fromIp != null and fromIp != ''">and fromIp = #{fromIp}</if>
+            <if test="intranetIp != null and intranetIp != ''">and intranetIp = #{intranetIp}</if>
+            <if test="intranetPort != null and intranetPort != ''">and intranetPort = #{intranetPort}</if>
+            <if test="userName != null and userName != ''">and userName = #{userName}</if>
+        </where>
+        limit #{startIndex},#{limit}
     </select>
 
-    <select id="countSyslogList" resultType="int" parameterType="hashmap">
-         select COUNT(1) from  syslog where 1=1;
+    <select id="countSyslogList" resultType="int" parameterType="java.util.Map">
+         select COUNT(1) from  syslog
+        <where>
+            1=1
+            <if test="fromIp != null and fromIp != ''">and fromIp = #{fromIp}</if>
+            <if test="intranetIp != null and intranetIp != ''">and intranetIp = #{intranetIp}</if>
+            <if test="intranetPort != null and intranetPort != ''">and intranetPort = #{intranetPort}</if>
+            <if test="userName != null and userName != ''">and userName = #{userName}</if>
+        </where>
     </select>
 </mapper>

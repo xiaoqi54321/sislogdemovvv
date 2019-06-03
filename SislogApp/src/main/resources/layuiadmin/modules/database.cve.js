@@ -22,10 +22,12 @@ layui.define(function (e) {
 
 		that.map = {
 			
-			'params["cve_id"]': form.find('input[name=cveid]').val(),
-			'params["cnnvd_id"]': form.find('input[name=cnnveid]').val()
+			'fromIp': form.find('input[name=fromIp]').val(),
+			'intranetIp': form.find('input[name=intranetIp]').val(),
+			'intranetPort': form.find('input[name=intranetPort]').val(),
+			'userName': form.find('input[name=userName]').val()
 		}
-		
+		//alert(JSON.stringify(that.map));
 		that.tableid = "id-table-database-cve";
 		return that;
 	}
@@ -124,7 +126,7 @@ layui.define(function (e) {
 
 			]],
 			page: true, //开启分页
-			//where: params().map
+			where: params().map
 		});
 		//查询
 		$('.layui-btn.btn-search').click(function () {

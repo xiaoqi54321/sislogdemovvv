@@ -12,7 +12,7 @@ public interface SyslogDao {
 
 
 
-    int countSyslogList() throws Exception;
+    int countSyslogList(Map paginator) throws Exception;
 
     List<Map<String,Object>> list(Map paginator) throws Exception;
 

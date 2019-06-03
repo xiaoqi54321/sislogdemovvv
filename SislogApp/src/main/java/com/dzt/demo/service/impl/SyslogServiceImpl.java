@@ -24,13 +24,16 @@ public class SyslogServiceImpl implements SyslogService {
     @Override
     public Map<String, Object> list(Map paginator) throws Exception {
         Map<String, Object> resultList =new HashMap<String, Object>();
-        Map<String, Object> paramsMap =new HashMap<String, Object>();
-        int total= syslogDao.countSyslogList();
+      //  Map<String, Object> paramsMap =new HashMap<String, Object>();
+        int total= syslogDao.countSyslogList(paginator);
         int startindex=(Integer.valueOf(paginator.get("paginator.page").toString())-1)*Integer.valueOf(paginator.get("paginator.limit").toString());
         int sumPages=total/Integer.valueOf(paginator.get("paginator.limit").toString());
-        paramsMap.put("startIndex",startindex);
-        paramsMap.put("limit",Integer.valueOf(paginator.get("paginator.limit").toString()));
-        List<Map<String,Object>> syslogList= syslogDao.list(paramsMap);
+       // paramsMap.put("startIndex",startindex);
+        //paramsMap.put("limit",Integer.valueOf(paginator.get("paginator.limit").toString()));
+        paginator.put("startIndex",startindex);
+        paginator.put("limit",Integer.valueOf(paginator.get("paginator.limit").toString()));
+
+        List<Map<String,Object>> syslogList= syslogDao.list(paginator);
 
         resultList.put("data",syslogList);
         resultList.put("total",total);
