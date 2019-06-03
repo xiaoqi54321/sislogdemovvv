@@ -27,7 +27,7 @@ layui.define(function (e) {
 			'intranetPort': form.find('input[name=intranetPort]').val(),
 			'userName': form.find('input[name=userName]').val()
 		}
-		alert(JSON.stringify(that.map));
+		//alert(JSON.stringify(that.map));
 		that.tableid = "id-table-database-cve";
 		return that;
 	}
