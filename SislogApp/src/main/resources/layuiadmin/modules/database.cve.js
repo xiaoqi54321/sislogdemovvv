@@ -31,6 +31,7 @@ layui.define(function (e) {
 	}
 
 	const initPageRender = function (requestRender) {
+
 		const $ = layui.$;
 		const table = layui.table;
 		const laydate = layui.laydate;
@@ -49,30 +50,81 @@ layui.define(function (e) {
 			height: 'full-95', //高度填满
 			defaultToolbar: [], //工具栏右侧按钮，默认['filter','exports','print']
 			url: '../view/deriveList', //数据请求URL
+			parseData: function(res){ //res 即为原始返回的数据
+			return {
+				"code": res.code, //解析接口状态
+				"msg": res.msg, //解析提示文本
+				"count": res.total, //解析数据长度
+				"data": res.data //解析数据列表
+			};
+		},
 			cols: [[{
-						field: 'ReceivedAt',
-						title: '访问时间',
-						align: 'center',
-						width: 140
-					}, {
-						field: 'FromHost',
-						title: '访问来源端口',
-						width: 250,
-						align: 'left',
-			        }, {
-						field: 'accessingPathWay',
-						title: '访问方式',
-						width: 160,
-						align: 'center',
-					}, {
-						field: 'fromIp',
-						title: '访问来源IP',
-						width: 100,
-						align: 'center',
-					}
-				]],
+				field: 'ReceivedAt',
+				title: '访问时间',
+				align: 'center',
+				width: 140
+			}, {
+				field: 'FromHost',
+				title: '访问外网IP',
+				width: 250,
+				align: 'left',
+			}, {
+				field: 'FromHost',
+				title: '访问方式',
+				width: 160,
+				align: 'center',
+			}, {
+				field: 'accessingResources',
+				title: '访问资源',
+				width: 100,
+				align: 'center',
+			},
+				{
+					field: 'accessingPathWay',
+					title: '访问方式',
+					width: 100,
+					align: 'center',
+				},
+				{
+					field: 'userName',
+					title: '用户',
+					width: 100,
+					align: 'center',
+				},
+				{
+					field: 'fromIp',
+					title: '源IP',
+					width: 100,
+					align: 'center',
+				},
+				{
+					field: 'action',
+					title: 'action',
+					width: 100,
+					align: 'center',
+				},
+				{
+					field: 'intranetIp',
+					title: '内网IP',
+					width: 100,
+					align: 'center',
+				},
+				{
+					field: 'intranetPort',
+					title: '内网端口',
+					width: 100,
+					align: 'center',
+				},
+				{
+					field: 'result',
+					title: '访问状态',
+					width: 100,
+					align: 'center',
+				}
+
+			]],
 			page: true, //开启分页
-			where: params().map
+			//where: params().map
 		});
 		//查询
 		$('.layui-btn.btn-search').click(function () {

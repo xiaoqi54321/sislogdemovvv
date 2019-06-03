@@ -7,7 +7,7 @@
     </select>
 
     <select id="list" parameterType="map" resultType="java.util.Map">
-        select * from  syslog where 1=1;
+        select * from  syslog limit #{startIndex},#{limit}
     </select>
 
     <select id="countSyslogList" resultType="int" parameterType="hashmap">

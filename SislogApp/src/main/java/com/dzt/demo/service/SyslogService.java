@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface SyslogService {
 
-    List<Map<String, Object>> queryData();
+    List<Map<String, Object>> queryData() throws Exception;
 
-    Map<String, Object> list() throws Exception;
+    Map<String, Object> list(Map paginator) throws Exception;
 }

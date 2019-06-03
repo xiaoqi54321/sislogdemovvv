@@ -1,5 +1,6 @@
 package com.dzt.demo.controller;
 
+import com.dzt.demo.config.CommonUtils;
 import com.dzt.demo.service.SyslogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ public class SyslogController {
 
     @RequestMapping("/hello")
     @ResponseBody
-    public List<Map<String,Object>> hello(){
+    public List<Map<String,Object>> hello() throws Exception {
        List<Map<String,Object>> list= syslogService.queryData();
         return  list;
     }
@@ -56,10 +57,9 @@ public class SyslogController {
    @RequestMapping(value = "/deriveList")
    @ResponseBody
     public Map deriveList(HttpServletRequest request) throws Exception {
-
-
-       Map<String, Object> deriveList = syslogService.list();
-
+       Map<String, Object> parameterMap = CommonUtils.getParameterMap(request);
+       String paginator = request.getParameter("paginator");
+       Map<String, Object> deriveList = syslogService.list(parameterMap);
         return deriveList;
     }
 }

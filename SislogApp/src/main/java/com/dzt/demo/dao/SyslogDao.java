@@ -11,7 +11,9 @@ public interface SyslogDao {
     List<Map<String, Object>> queryData();
 
 
-    List list() throws Exception;
 
     int countSyslogList() throws Exception;
+
+    List<Map<String,Object>> list(Map paginator) throws Exception;
+
 }

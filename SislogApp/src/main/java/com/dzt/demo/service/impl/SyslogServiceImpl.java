@@ -22,15 +22,23 @@ public class SyslogServiceImpl implements SyslogService {
     }
 
     @Override
-    public Map<String, Object> list() throws Exception {
-        Map<String, Object> lists =new HashMap<String, Object>();
-       List syslogList= syslogDao.list();
-       int total= syslogDao.countSyslogList();
-        lists.put("data",syslogList);
-        lists.put("total",total);
-        lists.put("count",total);
-        lists.put("code",0);
-        lists.put("msg","");
-        return lists;
+    public Map<String, Object> list(Map paginator) throws Exception {
+        Map<String, Object> resultList =new HashMap<String, Object>();
+        Map<String, Object> paramsMap =new HashMap<String, Object>();
+        int total= syslogDao.countSyslogList();
+        int startindex=(Integer.valueOf(paginator.get("paginator.page").toString())-1)*Integer.valueOf(paginator.get("paginator.limit").toString());
+        int sumPages=total/Integer.valueOf(paginator.get("paginator.limit").toString());
+        paramsMap.put("startIndex",startindex);
+        paramsMap.put("limit",Integer.valueOf(paginator.get("paginator.limit").toString()));
+        List<Map<String,Object>> syslogList= syslogDao.list(paramsMap);
+
+        resultList.put("data",syslogList);
+        resultList.put("total",total);
+        resultList.put("code",0);
+        resultList.put("msg","");
+        return resultList;
+
     }
+
+
 }
